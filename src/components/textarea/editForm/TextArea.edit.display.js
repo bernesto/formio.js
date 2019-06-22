@@ -195,7 +195,7 @@ export default [
     key: 'wysiwyg',
     clearOnHide: false,
     customDefaultValue(value, component, row, data, instance) {
-      return instance.wysiwygDefault;
+      return value.instance.wysiwygDefault;
     },
     conditional: {
       json: {
