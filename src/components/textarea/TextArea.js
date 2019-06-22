@@ -137,7 +137,12 @@ export default class TextAreaComponent extends TextFieldComponent {
     container.appendChild(this.input);
     this.addCounter(container);
 
-    return this.input;
+    if (this.options.preview) {
+      this.enableWysiwyg();
+    }
+    else {
+      return this.input;
+    }
   }
   /* eslint-enable max-statements */
 
@@ -549,7 +554,11 @@ export default class TextAreaComponent extends TextFieldComponent {
 
   destroy() {
     if (this.editorReady) {
-      this.editorReady.then((editor) => editor.destroy());
+      this.editorReady.then((editor) => {
+        if (editor.destroy) {
+          editor.destroy();
+        }
+      });
     }
 
     if (this.updateSize) {
